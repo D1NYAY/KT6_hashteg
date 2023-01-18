@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kt6_hashteg.databinding.ItemSuggestionBinding
 
-class SuggestAdapter(private val list: ArrayList<String>, private val clickListener: (String) -> Unit) :
-    RecyclerView.Adapter<SuggestAdapter.MessageViewHolder>() {
+class TextAdapter(private val list: ArrayList<String>, private val clickListener: (String) -> Unit) :
+    RecyclerView.Adapter<TextAdapter.MessageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
         return MessageViewHolder(

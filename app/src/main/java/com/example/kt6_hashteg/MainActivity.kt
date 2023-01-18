@@ -26,14 +26,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun saveText() {
-        binding.btnPush.setOnClickListener {
+        binding.btnSave.setOnClickListener {
             searchHash()
-            binding.etInput.text.clear()
+            binding.etHash.text.clear()
         }
     }
 
     private fun searchHash() {
-        val words = binding.etInput.text.split(" ")
+        val words = binding.etHash.text.split(" ")
 
         for (word in words) {
             if (word.startsWith("#")) {
@@ -44,25 +44,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initAdapter(){
-        adapter = SuggestAdapter(list , this::clickListener)
-        binding.ryHashtag.adapter = adapter
+        adapter = TextAdapter(list , this::clickListener)
+        binding.rvHash.adapter = adapter
     }
 
     @SuppressLint("SetTextI18n")
     private fun clickListener(hashTags : String) {
-        binding.etInput.setText(binding.etInput.text.toString().replace(replaceWords, ""))
-        binding.etInput.setText("${binding.etInput.text}#$hashTags ")
-        binding.etInput.setSelection(binding.etInput.length())
+        binding.etHash.setText(binding.etHash.text.toString().replace(replaceWords, ""))
+        binding.etHash.setText("${binding.etHash.text}#$hashTags ")
+        binding.etHash.setSelection(binding.etHash.length())
     }
 
     private fun hs() {
-        binding.etInput.setOnClickListener {
+        binding.etHash.setOnClickListener {
             if (list.isNotEmpty()) {
-                binding.ryHashtag.isVisible = true
+                binding.rvHash.isVisible = true
             }
         }
 
-        binding.etInput.addTextChangedListener(object : TextWatcher {
+        binding.etHash.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
             override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                 if (words != null) {
                     for (word in words) {
                         replaceWords = word
-                        binding.ryHashtag.isVisible = word.startsWith("#")
+                        binding.rvHash.isVisible = word.startsWith("#")
                     }
                 }
             }
